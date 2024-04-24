@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6935527587013054116}
   - component: {fileID: -6343842238401682711}
   - component: {fileID: 6598444251120974540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CupRed
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917496f2a60f8c64699877666928b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!64 &-6343842238401682711
 MeshCollider:
   m_ObjectHideFlags: 0

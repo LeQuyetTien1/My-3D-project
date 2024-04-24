@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7616069847941662145}
   - component: {fileID: -1919445928326951190}
   - component: {fileID: 8303674952608986999}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AmmoCrate
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917496f2a60f8c64699877666928b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!64 &-1919445928326951190
 MeshCollider:
   m_ObjectHideFlags: 0

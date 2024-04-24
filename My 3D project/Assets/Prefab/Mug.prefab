@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1881019888535499011}
   - component: {fileID: 5292888002316797443}
   - component: {fileID: -4920676073502004653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mug
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917496f2a60f8c64699877666928b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!64 &5292888002316797443
 MeshCollider:
   m_ObjectHideFlags: 0
