@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public int id;
     private void OnValidate()
     {
         if (gameObject.GetComponent<DragDrop>() == null)

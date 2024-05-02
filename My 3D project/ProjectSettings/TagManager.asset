@@ -7,6 +7,8 @@ TagManager:
   - Item
   - Plane1
   - Plane2
+  - Slot1
+  - Slot2
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,12 @@ public class DragDrop : MonoBehaviour
     public LayerMask layerMask;
     private Vector3 slot1Pos = new Vector3(-1.09f, 0.21f, -3.8f);
     private Vector3 slot2Pos = new Vector3(0.91f, 0.21f, -3.8f);
+    private Slot slot1, slot2;
+    private void Start()
+    {
+        slot1 = GameObject.FindGameObjectWithTag("Slot1").GetComponent<Slot>();
+        slot2 = GameObject.FindGameObjectWithTag("Slot2").GetComponent<Slot>();
+    }
     private void OnMouseDrag()
     {
         transform.position = new Vector3(MouseWorldPosition().x,0.75f,MouseWorldPosition().z);
@@ -25,14 +31,13 @@ public class DragDrop : MonoBehaviour
     {
         RaycastHit hit = CastRay();
         gameObject.GetComponent<Rigidbody>().useGravity = true;
-
         if (hit.collider.CompareTag("Plane1"))
         {
-            FitSlot(slot1Pos);
+            FitSlot(slot1Pos, slot1);
         }
         else if (hit.collider.CompareTag("Plane2"))
         {
-            FitSlot(slot2Pos);
+            FitSlot(slot2Pos, slot2);
         }
     }
     private RaycastHit CastRay()
@@ -45,10 +50,18 @@ public class DragDrop : MonoBehaviour
         Physics.Raycast(transform.position, worldMousePosFar - transform.position, out hit, layerMask);
         return hit;
     }
-    private void FitSlot(Vector3 slotPos)
+    private void FitSlot(Vector3 slotPos, Slot slot)
     {
-        transform.position = slotPos;
-        transform.eulerAngles = new Vector3(-90, 0, 0);
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        RaycastHit hit = CastRay();
+        if (slot.isOccupied == false)
+        {
+            transform.position = slotPos;
+            transform.eulerAngles = new Vector3(-90, 0, 0);
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
+        else if(slot.isOccupied == true)
+        {
+            transform.position = Vector3.zero;
+        }
     }
 }
