@@ -9,10 +9,12 @@ public class DragDrop : MonoBehaviour
     private Vector3 slot1Pos = new Vector3(-1.09f, 0.21f, -3.8f);
     private Vector3 slot2Pos = new Vector3(0.91f, 0.21f, -3.8f);
     private Slot slot1, slot2;
+    private Item dragItem;
     private void Start()
     {
         slot1 = GameObject.FindGameObjectWithTag("Slot1").GetComponent<Slot>();
         slot2 = GameObject.FindGameObjectWithTag("Slot2").GetComponent<Slot>();
+        dragItem = GetComponent<Item>();
     }
     private void OnMouseDrag()
     {
@@ -31,13 +33,23 @@ public class DragDrop : MonoBehaviour
     {
         RaycastHit hit = CastRay();
         gameObject.GetComponent<Rigidbody>().useGravity = true;
-        if (hit.collider.CompareTag("Plane1"))
+        if (hit.collider.CompareTag("Plane"))
         {
-            FitSlot(slot1Pos, slot1);
-        }
-        else if (hit.collider.CompareTag("Plane2"))
-        {
-            FitSlot(slot2Pos, slot2);
+            if (slot1.isOccupied == false)
+            {
+                FitSlot(slot1Pos);
+            }
+            else if (slot2.isOccupied == false)
+            {
+                if(slot1.item.id == dragItem.id)
+                {
+                    FitSlot(slot2Pos);
+                }
+                else
+                {
+                    transform.position = Vector3.up;
+                }
+            }
         }
     }
     private RaycastHit CastRay()
@@ -50,18 +62,11 @@ public class DragDrop : MonoBehaviour
         Physics.Raycast(transform.position, worldMousePosFar - transform.position, out hit, layerMask);
         return hit;
     }
-    private void FitSlot(Vector3 slotPos, Slot slot)
+    private void FitSlot(Vector3 slotPos)
     {
         RaycastHit hit = CastRay();
-        if (slot.isOccupied == false)
-        {
-            transform.position = slotPos;
-            transform.eulerAngles = new Vector3(-90, 0, 0);
-            gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        }
-        else if(slot.isOccupied == true)
-        {
-            transform.position = Vector3.zero;
-        }
+        transform.position = slotPos;
+        transform.eulerAngles = Vector3.zero;
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 }
