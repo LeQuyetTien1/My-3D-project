@@ -6,8 +6,8 @@ using UnityEngine;
 public class DragDrop : MonoBehaviour
 {
     public LayerMask layerMask;
-    private Vector3 slot1Pos = new Vector3(-1.09f, 0.21f, -3.8f);
-    private Vector3 slot2Pos = new Vector3(0.91f, 0.21f, -3.8f);
+    private Vector3 slot1Pos = new Vector3(-1.09f, 0.21f, -4f);
+    private Vector3 slot2Pos = new Vector3(0.91f, 0.21f, -4f);
     private Slot slot1, slot2;
     private Item dragItem;
     private void Start()

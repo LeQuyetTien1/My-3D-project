@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class GameLogic : MonoBehaviour
 {
     public Slot slot1, slot2;
-    public GameObject gameOverPanel;
-    public Item[] listItem;
+    public GameObject gameOverPanel, gameWinPanel;   
     public Text scoreText;
     private int score = 0;
     public Button remuseButton;
+    public Item[] listItem;
 
     private void OnValidate()
     {
@@ -24,6 +24,10 @@ public class GameLogic : MonoBehaviour
     }
     private void Update()
     {
+        if (GameObject.FindGameObjectWithTag("Item") == null)
+        {
+            GameWin();
+        }
         if (slot1.item != null && slot2.item != null)
         {
             DestroyObject(slot1);
@@ -35,6 +39,13 @@ public class GameLogic : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+        DeactivateDragDrop();
+    }
+    public void GameWin()
+    {
+        gameWinPanel.SetActive(true);
+        DeactivateDragDrop();
+        Time.timeScale = 0;
     }
     private void DestroyObject(Slot slot)
     {
@@ -53,7 +64,6 @@ public class GameLogic : MonoBehaviour
             }           
         }
     }
-    [ContextMenu("Spawn Item")]
     public void SpawnItem()
     {
         for(int i=0; i < listItem.Length; i++)
@@ -64,9 +74,29 @@ public class GameLogic : MonoBehaviour
     public void Pause()
     {
         remuseButton.gameObject.SetActive(true);
+        DeactivateDragDrop();
+        Time.timeScale = 0;
     }
     public void Remuse()
     {
         remuseButton.gameObject.SetActive(false);
+        ActivateDragDrop();
+        Time.timeScale = 1;
+    }
+    public void DeactivateDragDrop()
+    {
+        GameObject[] listObject = GameObject.FindGameObjectsWithTag("Item");
+        for (int i = 0; i < listObject.Length; i++)
+        {
+            listObject[i].gameObject.layer = 2;
+        }
+    }
+    public void ActivateDragDrop()
+    {
+        GameObject[] listObject = GameObject.FindGameObjectsWithTag("Item");
+        for (int i = 0; i < listObject.Length; i++)
+        {
+            listObject[i].gameObject.layer = 6;
+        }
     }
 }
