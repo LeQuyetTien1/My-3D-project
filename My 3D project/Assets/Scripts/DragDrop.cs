@@ -10,18 +10,20 @@ public class DragDrop : MonoBehaviour
     private Vector3 slot2Pos = new Vector3(0.91f, 0.21f, -4f);
     private Slot slot1, slot2;
     private Item dragItem;
+    private new Rigidbody rigidbody;
     private void Start()
     {
         slot1 = GameObject.FindGameObjectWithTag("Slot1").GetComponent<Slot>();
         slot2 = GameObject.FindGameObjectWithTag("Slot2").GetComponent<Slot>();
         dragItem = GetComponent<Item>();
+        rigidbody = GetComponent<Rigidbody>();
     }
     private void OnMouseDrag()
     {
         transform.position = new Vector3(MouseWorldPosition().x,0.75f,MouseWorldPosition().z);
         transform.eulerAngles = Vector3.zero;
-        gameObject.GetComponent<Rigidbody>().useGravity = false;
-        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        rigidbody.useGravity = false;
+        rigidbody.isKinematic = false;
     }
     private Vector3 MouseWorldPosition()
     {
@@ -32,7 +34,7 @@ public class DragDrop : MonoBehaviour
     private void OnMouseUp()
     {
         RaycastHit hit = CastRay();
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        rigidbody.useGravity = true;
         if (hit.collider.CompareTag("Plane"))
         {
             if (slot1.isOccupied == false)

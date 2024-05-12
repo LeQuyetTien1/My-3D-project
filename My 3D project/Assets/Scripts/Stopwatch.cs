@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+
 public class Stopwatch : MonoBehaviour
 {
     public int limitTime;
@@ -27,6 +28,7 @@ public class Stopwatch : MonoBehaviour
         if (gameTime > 0)
         {
             gameTime = limitTime - (int)Time.time;
+            gameTime -= (int)Time.deltaTime;
         }
         if(gameTime==0)
         {

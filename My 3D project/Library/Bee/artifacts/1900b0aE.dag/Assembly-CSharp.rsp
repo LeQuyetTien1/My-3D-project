@@ -360,6 +360,7 @@
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/Slot.cs"
 "Assets/Scripts/Stopwatch.cs"
+"Assets/Scripts/Waypoint.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,8 @@ public class GameLogic : MonoBehaviour
     public Text scoreText;
     private int score = 0;
     public Button remuseButton;
+    public GameObject clockImage, freezeTime, freezeBackground;
     public Item[] listItem;
-
     private void OnValidate()
     {
         AddItemID();
@@ -28,10 +29,15 @@ public class GameLogic : MonoBehaviour
         {
             GameWin();
         }
-        if (slot1.item != null && slot2.item != null)
+        if (slot1.item != null && slot2.item != null && slot1.item.id == slot2.item.id)
         {
+            Item replaceItem = Instantiate(slot1.item, new Vector3(-0.1f, 0.22f, -4.22f), slot1.item.transform.rotation);
+            replaceItem.GetComponent<MeshCollider>().enabled = false;
+            replaceItem.GetComponent<Rigidbody>().isKinematic = false;
+            Destroy(replaceItem.gameObject,0.5f);
             DestroyObject(slot1);
             DestroyObject(slot2);
+            
             score++;
             scoreText.text = score.ToString();
         }     
@@ -64,11 +70,12 @@ public class GameLogic : MonoBehaviour
             }           
         }
     }
+    [ContextMenu("Spawn Item")]
     public void SpawnItem()
     {
         for(int i=0; i < listItem.Length; i++)
         {
-            Instantiate(listItem[i], new Vector3(Random.Range(-8,8),Random.Range(0.5f,1.5f),Random.Range(-0.5f,3.5f)), Quaternion.Euler(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)));
+            Instantiate(listItem[i], new Vector3(Random.Range(-6,6),Random.Range(0.5f,2.5f),Random.Range(-0.3f,3f)), Quaternion.Euler(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)));
         }
     }
     public void Pause()
@@ -98,5 +105,17 @@ public class GameLogic : MonoBehaviour
         {
             listObject[i].gameObject.layer = 6;
         }
+    }
+    public void ChangeStatus(GameObject obj1, GameObject obj2)
+    {
+        obj1.SetActive(false);
+        obj2.SetActive(true);
+    }
+    public void Freeze()
+    {
+        ChangeStatus(clockImage, freezeTime);
+        /*clockImage.SetActive(false);
+        freezeTime.SetActive(true);*/
+        freezeBackground.SetActive(true);
     }
 }
