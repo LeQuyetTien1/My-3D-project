@@ -12,7 +12,7 @@ public class GameLogic : MonoBehaviour
     public Text scoreText;
     private int score = 0;
     public Button remuseButton;
-    public GameObject clockImage, freezeTime, freezeBackground;
+    public Stopwatch stopwatch;
     public Item[] listItem;
     private void OnValidate()
     {
@@ -37,7 +37,6 @@ public class GameLogic : MonoBehaviour
             Destroy(replaceItem.gameObject,0.5f);
             DestroyObject(slot1);
             DestroyObject(slot2);
-            
             score++;
             scoreText.text = score.ToString();
         }     
@@ -51,7 +50,7 @@ public class GameLogic : MonoBehaviour
     {
         gameWinPanel.SetActive(true);
         DeactivateDragDrop();
-        Time.timeScale = 0;
+        stopwatch.isStop = true;
     }
     private void DestroyObject(Slot slot)
     {
@@ -106,16 +105,5 @@ public class GameLogic : MonoBehaviour
             listObject[i].gameObject.layer = 6;
         }
     }
-    public void ChangeStatus(GameObject obj1, GameObject obj2)
-    {
-        obj1.SetActive(false);
-        obj2.SetActive(true);
-    }
-    public void Freeze()
-    {
-        ChangeStatus(clockImage, freezeTime);
-        /*clockImage.SetActive(false);
-        freezeTime.SetActive(true);*/
-        freezeBackground.SetActive(true);
-    }
+    
 }

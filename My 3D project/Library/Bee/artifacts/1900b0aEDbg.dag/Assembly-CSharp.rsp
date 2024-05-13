@@ -359,6 +359,7 @@
 "Assets/Scripts/DragDrop.cs"
 "Assets/Scripts/GameLogic.cs"
 "Assets/Scripts/Item.cs"
+"Assets/Scripts/SceneLoader.cs"
 "Assets/Scripts/Slot.cs"
 "Assets/Scripts/Stopwatch.cs"
 "Assets/Scripts/TimeFreeze.cs"
