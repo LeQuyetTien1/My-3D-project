@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 public class DragDrop : MonoBehaviour
 {
@@ -49,7 +47,13 @@ public class DragDrop : MonoBehaviour
                 }
                 else
                 {
-                    transform.position = Vector3.up;
+                    Debug.Log("Add Force");
+                    /*transform.position = Vector3.up;*/
+                    /*rigidbody.AddForce(new Vector3(0, 5, 5));*/
+                    /*rigidbody.AddExplosionForce(100f, slot2.transform.position, 100f);*/
+                    transform.DOLocalJump(new Vector3(Random.Range(-5, 5), 0.2f, Random.Range(0, 3)), 1f, 1, 1);
+                    /*transform.DOJump(new Vector3(Random.Range(-5, 5), 0.2f, Random.Range(0, 3)), 1f, 1, 1);*/
+                    /*transform.DOPunchScale(new Vector3(0, 5, 5), 1);*/
                 }
             }
         }

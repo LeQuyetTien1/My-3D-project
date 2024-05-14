@@ -11,9 +11,11 @@ public class GameLogic : MonoBehaviour
     public GameObject gameOverPanel, gameWinPanel;   
     public Text scoreText;
     private int score = 0;
-    public Button remuseButton;
+    public Button remuseButton, pauseButton, freezeButton;
     public Stopwatch stopwatch;
+    public GameObject blackPlane;
     public Item[] listItem;
+    private Item replaceItem;
     private void OnValidate()
     {
         AddItemID();
@@ -31,7 +33,8 @@ public class GameLogic : MonoBehaviour
         }
         if (slot1.item != null && slot2.item != null && slot1.item.id == slot2.item.id)
         {
-            Item replaceItem = Instantiate(slot1.item, new Vector3(-0.1f, 0.22f, -4.22f), slot1.item.transform.rotation);
+            blackPlane.SetActive(true);
+            replaceItem = Instantiate(slot1.item, new Vector3(-0.1f, 0.22f, -4.22f), slot1.item.transform.rotation);
             replaceItem.GetComponent<MeshCollider>().enabled = false;
             replaceItem.GetComponent<Rigidbody>().isKinematic = false;
             Destroy(replaceItem.gameObject,0.5f);
@@ -39,12 +42,15 @@ public class GameLogic : MonoBehaviour
             DestroyObject(slot2);
             score++;
             scoreText.text = score.ToString();
-        }     
+        }
+        if (replaceItem == null) blackPlane.SetActive(false);
     }
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
         DeactivateDragDrop();
+        pauseButton.enabled = false;
+        freezeButton.enabled = false;
     }
     public void GameWin()
     {
@@ -82,12 +88,14 @@ public class GameLogic : MonoBehaviour
         remuseButton.gameObject.SetActive(true);
         DeactivateDragDrop();
         Time.timeScale = 0;
+        freezeButton.enabled = false;
     }
     public void Remuse()
     {
         remuseButton.gameObject.SetActive(false);
         ActivateDragDrop();
         Time.timeScale = 1;
+        freezeButton.enabled = true;
     }
     public void DeactivateDragDrop()
     {

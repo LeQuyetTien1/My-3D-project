@@ -1370,12 +1370,12 @@ GameObject:
   - component: {fileID: 1020883595}
   - component: {fileID: 1020883594}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: BlackPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1020883594
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1418,7 +1418,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e9ead53cd9004f14fbee8620778dd645, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1457,7 +1457,7 @@ Transform:
   m_GameObject: {fileID: 1020883593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0998, y: 0.22, z: -4.14}
+  m_LocalPosition: {x: -0.0998, y: 0.23, z: -4.14}
   m_LocalScale: {x: 0.36758566, y: 0.15753895, z: 0.15753895}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1492,7 +1492,7 @@ RectTransform:
   m_GameObject: {fileID: 1058436336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.47986233, y: 0.47986233, z: 0.47986233}
+  m_LocalScale: {x: 0.36958998, y: 0.36958998, z: 0.36958998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1196488693}
@@ -1501,7 +1501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 183, y: -169.1}
+  m_AnchoredPosition: {x: 186.09, y: -173.8}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058436338
@@ -3025,7 +3025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcd6e0c3239639428eb8f9138a54aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitTime: 90
+  limitTime: 900
   timeText: {fileID: 1776250252}
   gameOver:
     m_PersistentCalls:
@@ -3582,7 +3582,10 @@ MonoBehaviour:
   gameWinPanel: {fileID: 2071016834}
   scoreText: {fileID: 1577825642}
   remuseButton: {fileID: 1980190692}
+  pauseButton: {fileID: 1441397438}
+  freezeButton: {fileID: 1058436338}
   stopwatch: {fileID: 1776250255}
+  blackPlane: {fileID: 1020883593}
   listItem:
   - {fileID: -5174140929208922774, guid: e74125102f2ca4d48a5acc58acc01e3a, type: 3}
   - {fileID: -1036550671086210666, guid: 294ca1d9da039e849a16f5f5baa92868, type: 3}

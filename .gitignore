@@ -1,0 +1,14 @@
+
+/My 3D project/Library
+/My 3D project/Temp
+*.sln
+/My 3D project/Logs
+/My 3D project/.vs
+*.csproj
+*.csproj
+/My 3D project/Library
+/My 3D project/Library
+/My 3D project/UserSettings
+/My 3D project/obj
+*.sln
+*.csproj
